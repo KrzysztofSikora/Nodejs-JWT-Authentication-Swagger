@@ -9,17 +9,19 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING
         },
         done: {
-            type: Sequelize.BOOLEAN
+            type: Sequelize.BOOLEAN,
+            default: false
         },
 		content: {
             type: Sequelize.TEXT
         },
         priority: {
-            type: Sequelize.STRING
+            type: Sequelize.STRING,
+            default: 'low'
         },
         user_id: {
             type: Sequelize.INTEGER
-        }
+        },
 
     });
 

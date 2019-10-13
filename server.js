@@ -1,10 +1,13 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 var path = require('path');
+var cors = require('cors');
 
-require('./app/router/router.js')(app);
+app.use(cors());
+require('./app/router/userRouter.js')(app);
+require('./app/router/contentRouter.js')(app);
 
 const db = require('./app/config/db.config.js');
 
@@ -21,14 +24,14 @@ var swaggerDefinition = {
     host: 'localhost:3000',
     basePath: '/api',
     securityDefinitions: {
-        auth: {
-                type: 'apiKey',
-                name: 'x-access-token',
-                in: "header"
+        Bearer: {
+            type: 'apiKey',
+            name: 'Authorization',
+            in: "header",
         }
     },
     security: [
-        { auth: [] }
+        { Bearer: [] }
     ]
 
 
@@ -69,8 +72,8 @@ db.sequelize.sync({alter: true}).then(()=>{
 // Create a Server
 var server = app.listen(3000, function () {
 
-  var host = server.address().address
-  var port = server.address().port
+  var host = server.address().address;
+  var port = server.address().port;
 
   console.log("App listening at http://%s:%s", host, port)
 });
