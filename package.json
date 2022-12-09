@@ -19,7 +19,7 @@
   "dependencies": {
     "app-root-path": "^2.2.1",
     "bcryptjs": "^2.4.3",
-    "express": "^4.16.3",
+    "express": "^4.17.3",
     "fs": "0.0.1-security",
     "jsonwebtoken": "^8.3.0",
     "mysql2": "^1.6.1",
